@@ -1,13 +1,15 @@
 # EnvoAPI for Go
 
-Module: `github.com/envoapi-official/envoapi-sdks/go`. Requires Go 1.25+. This module has not been published; use a local replacement while developing.
+Module: `github.com/envoapi-official/envoapi-sdks/go`. Requires Go 1.25+.
+
+## Installation
 
 ```sh
 # In your consumer module:
-go mod edit -require=github.com/envoapi-official/envoapi-sdks/go@v0.0.0
-go mod edit -replace=github.com/envoapi-official/envoapi-sdks/go=/absolute/path/to/envoapi-sdks/go
-go mod tidy
+go get github.com/envoapi-official/envoapi-sdks/go@v0.1.0
 ```
+
+## Usage
 
 ```go
 import (
@@ -32,4 +34,14 @@ Responses contain `Body`, `Status`, and `Headers`. Models and enum constants liv
 
 Use `errors.As` for `*envoapi.APIError`, `*envoapi.TransportError`, or `*envoapi.DecodeError`, and `errors.Is` for wrapped context cancellation and deadline errors. API errors include `Status`, `Code`, `Retryable`, `RequestID`, `Headers`, and raw `Body`.
 
-Future release tags use `go/v0.1.0` because this module is in the repository's `go/` subdirectory.
+## Local development and releases
+
+To test local changes from another Go module:
+
+```sh
+go mod edit -require=github.com/envoapi-official/envoapi-sdks/go@v0.0.0
+go mod edit -replace=github.com/envoapi-official/envoapi-sdks/go=/absolute/path/to/envoapi-sdks/go
+go mod tidy
+```
+
+Release tags use the `go/` prefix, for example `go/v0.1.0`, because this module is in the repository's `go/` subdirectory. The repository must be public for unauthenticated installation through the public Go proxy. Go releases do not require a separate registry account or package upload.
