@@ -1,49 +1,105 @@
 # EnvoAPI for Python
 
-The EnvoAPI Python SDK provides typed synchronous and asynchronous clients for all 52 public API operations, using HTTPX transports. Requires Python 3.11+.
+Call EnvoAPI from your Python app to look up profiles, companies, posts, jobs, and more. Includes typed sync and async clients.
 
-## Installation
+Requires **Python 3.11+**.
+
+## Install
 
 ```sh
-pip install envoapi
+python -m pip install envoapi
 ```
 
-## Authentication and synchronous requests
+## Set your API key
 
-Set `ENVOAPI_API_KEY` to your EnvoAPI API key, or pass `api_key` when creating the client. This is the API key for EnvoAPI requests, separate from credentials used to publish packages to PyPI.
+```sh
+# macOS / Linux
+export ENVOAPI_API_KEY="your-api-key"
+```
+
+```powershell
+# Windows PowerShell
+$env:ENVOAPI_API_KEY="your-api-key"
+```
+
+Run your app from the same terminal. Both clients read this variable automatically. Keep your key out of source control.
+
+## Make a request
+
+Save as `app.py`:
 
 ```python
-from envoapi import EnvoAPI, APIError
+from envoapi import EnvoAPI
 
-with EnvoAPI() as client:  # reads ENVOAPI_API_KEY
-    response = client.profiles.get_details_by_username(username="alice")
-    print(response.body.data, response.body.meta.credit_cost)
-    print(response.headers.get("x-request-id"))
+with EnvoAPI() as client:
+    response = client.profiles.get_posts(username="satyanadella")
+    print(response.body.data.posts)
+    print(response.body.meta.credit_cost)
 ```
 
-## Asynchronous requests
+Run it:
+
+```sh
+python app.py
+```
+
+Replace `satyanadella` with the profile username you want to look up. The `with` block closes the client when you are done.
+
+## Async requests
 
 ```python
 import asyncio
 from envoapi import AsyncEnvoAPI
 
-async def lookup():
+async def main():
     async with AsyncEnvoAPI() as client:
-        response = await client.profiles.get_posts(username="alice")
-        return response.body.data.posts
+        response = await client.profiles.get_posts(username="satyanadella")
+        print(response.body.data.posts)
 
-posts = asyncio.run(lookup())
-print(posts)
+asyncio.run(main())
 ```
 
-## Configuration and responses
+In an app that already has an event loop, use `await` inside your async function instead of calling `asyncio.run()`.
 
-Configure `api_key`, `base_url`, `timeout` (seconds or `httpx.Timeout`), and `transport` on either client. Context managers close their owned HTTPX client and transport; manual callers must use `close()` / `await aclose()`. Cancellation of an async task propagates unchanged. Methods make one request with no retries or automatic pagination.
+## Client options
 
-The default base URL is `https://api.envoapi.com` and the default timeout is 60 seconds per HTTPX timeout phase. For pagination, pass the response's continuation cursor to the next request explicitly. Repeated requests can incur additional charges.
+You can also pass a key from your app's configuration. An explicit key overrides `ENVOAPI_API_KEY`.
 
-The response exposes `body`, `status`, and `headers`. Models use snake_case attributes and provide `to_dict()` for wire-format serialization. `from envoapi import models` exposes generated models and parameter enums; `UNSET` distinguishes omitted optional values from `None`. Date-time fields become Python datetimes, so serialization can normalize an equivalent UTC timestamp.
+```python
+import os
+from envoapi import EnvoAPI
 
-`APIError` exposes `status`, `code`, `retryable`, `request_id`, `headers`, and `body`. Transport failures retain the original exception in `__cause__`. `DecodeError` indicates a malformed successful response.
+with EnvoAPI(api_key=os.environ["ENVOAPI_API_KEY"], timeout=30.0) as client:
+    response = client.profiles.get_posts(username="satyanadella")
+    print(response.body.data.posts)
+```
 
-See the [operation reference](https://github.com/envoapi-official/envoapi-sdks/blob/main/docs/operations.md) for every resource method and the [repository](https://github.com/envoapi-official/envoapi-sdks) for development instructions. Maintainers can follow the [PyPI release instructions](https://github.com/envoapi-official/envoapi-sdks/blob/main/python/PUBLISHING.md).
+Both clients accept the same options. The default timeout is 60 seconds per HTTPX timeout phase; `timeout` accepts seconds or `httpx.Timeout`. Use `base_url` to change the default `https://api.envoapi.com`, or `transport` for a custom HTTPX transport.
+
+## Handle errors
+
+```python
+from envoapi import APIError, EnvoAPI
+
+try:
+    with EnvoAPI() as client:
+        response = client.profiles.get_posts(username="satyanadella")
+        print(response.body.data.posts)
+except APIError as error:
+    print(error.status, error.code, str(error), error.request_id)
+```
+
+`APIError` means the API returned an error. `TransportError` means the request failed, and `DecodeError` means the response could not be read in the expected format. All three can be imported from `envoapi`.
+
+## Responses and more methods
+
+- `response.body.data`: the result.
+- `response.body.meta`: request metadata, including `credit_cost`.
+- `response.status` and `response.headers`: HTTP status and headers.
+- `response.body.to_dict()`: the response body as a dictionary.
+
+Model attributes use snake_case. The SDK does not retry requests or fetch additional pages automatically. For paginated methods, pass the returned continuation cursor to the next call with the same search parameters. Requests use your EnvoAPI credits.
+
+See the [method reference](https://github.com/envoapi-official/envoapi-sdks/blob/main/docs/operations.md) for all available calls. For models and enums, use `from envoapi import models`.
+
+[GitHub](https://github.com/envoapi-official/envoapi-sdks) · [Issues](https://github.com/envoapi-official/envoapi-sdks/issues) · [MIT license](https://github.com/envoapi-official/envoapi-sdks/blob/main/LICENSE)

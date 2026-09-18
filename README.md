@@ -1,77 +1,125 @@
 # EnvoAPI SDKs
 
-SDK repository for TypeScript/JavaScript, Python, and Go. All three clients cover the 52 operations in the committed public OpenAPI 3.1 snapshot. Builds and installed clients do not depend on the backend repository or its private contracts package.
+Use EnvoAPI from your TypeScript, JavaScript, Python, or Go project. Look up profiles, companies, posts, jobs, and more with typed clients.
 
-The SDKs use the MIT license. Go is released as `go/v0.1.1`; the npm and Python packages have `0.1.1` prepared for their next releases. TypeScript/JavaScript and Python `0.1.0` are published as `envoapi` on npm and PyPI respectively. The repository is `envoapi-official/envoapi-sdks`, and the Go module is `github.com/envoapi-official/envoapi-sdks/go`.
+| Language | Install in your project | Guide |
+| --- | --- | --- |
+| TypeScript / JavaScript (Node.js 22+) | `npm install envoapi` | [npm SDK guide](typescript/README.md) |
+| Python 3.11+ | `python -m pip install envoapi` | [Python SDK guide](python/README.md) |
+| Go 1.25+ | `go get github.com/envoapi-official/envoapi-sdks/go` | [Go SDK guide](go/README.md) |
 
-## Local development
+## 1. Set your API key
 
-Use Node.js 22+, pnpm 11.10.0, Python 3.11+, Go 1.25+, uv, and a C compiler for Go's race detector. The current workspace has Python in `.venv`, Go in `.tools/go`, uv in `.tools/uv-x86_64-unknown-linux-gnu`, and a local Zig C compiler wrapper in `.tools/cc`. Scripts automatically find these local toolchains; on other machines they use the tools on PATH and the optional `CC` setting.
-
-```sh
-pnpm install --frozen-lockfile
-uv venv .venv --python 3.11
-uv pip sync --python .venv/bin/python requirements-dev.lock
-pnpm verify
-```
-
-On this prepared workspace, run `pnpm verify` directly. Verification generates into temporary storage, checks drift and endpoint coverage, runs behavior and type tests, builds packages, and installs them into separate consumer projects. Package installation may download public dependencies; no private credentials or live API calls are needed.
+Use your EnvoAPI API key as the value of `ENVOAPI_API_KEY`. All three SDKs read this environment variable automatically.
 
 ```sh
-pnpm generate                          # regenerate all three SDKs
-pnpm generate:check                    # compare without rewriting tracked files
-pnpm contract:import ~/envoapi-backend # explicitly import a committed public snapshot
-pnpm verify                            # full local acceptance checks
+# macOS / Linux
+export ENVOAPI_API_KEY="your-api-key"
 ```
 
-The import records the source commit and SHA-256 checksum in `openapi/provenance.json`. It refuses an uncommitted contract or external references. Review the snapshot, regenerate, and verify together when updating. The source backend is never modified.
+```powershell
+# Windows PowerShell
+$env:ENVOAPI_API_KEY="your-api-key"
+```
 
-## Clients
+Run your app from the same terminal, or set this variable in your hosting provider's environment settings. Keep the key on your server and out of source control.
+
+## 2. Make a request
+
+These examples get a profile's recent posts. Replace `satyanadella` with the profile username you want to look up.
+
+### TypeScript / JavaScript
+
+```sh
+npm install envoapi
+```
 
 ```javascript
 import { EnvoAPI } from 'envoapi';
-const client = new EnvoAPI(); // ENVOAPI_API_KEY
-const response = await client.profiles.getPosts({ username: 'alice' });
-console.log(response.body.data.posts, response.body.meta.creditCost);
+
+const client = new EnvoAPI();
+const response = await client.profiles.getPosts({ username: 'satyanadella' });
+
+console.log(response.body.data.posts);
+console.log(response.body.meta.creditCost);
 ```
+
+For JavaScript, save this as `app.mjs` and run `node app.mjs`. The same code works in a TypeScript project configured for ES modules. [More examples →](typescript/README.md)
+
+### Python
+
+```sh
+python -m pip install envoapi
+```
+
+Save as `app.py`:
 
 ```python
 from envoapi import EnvoAPI
 
 with EnvoAPI() as client:
-    response = client.profiles.get_posts(username="alice")
-    print(response.body.data.posts, response.body.meta.credit_cost)
+    response = client.profiles.get_posts(username="satyanadella")
+    print(response.body.data.posts)
+    print(response.body.meta.credit_cost)
 ```
+
+Run `python app.py`. An async client is also available. [More examples →](python/README.md)
+
+### Go
+
+From your Go project (run `go mod init example.com/myapp` first if it has no `go.mod`):
+
+```sh
+go get github.com/envoapi-official/envoapi-sdks/go
+```
+
+Save as `main.go`:
 
 ```go
-client, err := envoapi.NewClient() // ENVOAPI_API_KEY
-if err != nil { log.Fatal(err) }
-response, err := client.Profiles.GetPosts(ctx, envoapi.GetProfilePostsParams{Username: "alice"})
-if err != nil { log.Fatal(err) }
-fmt.Println(response.Body.Data.Posts, response.Body.Meta.CreditCost)
+package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+
+    envoapi "github.com/envoapi-official/envoapi-sdks/go"
+)
+
+func main() {
+    client, err := envoapi.NewClient()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    response, err := client.Profiles.GetPosts(context.Background(), envoapi.GetProfilePostsParams{
+        Username: "satyanadella",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println(response.Body.Data.Posts)
+    fmt.Println(response.Body.Meta.CreditCost)
+}
 ```
 
-Each method returns a response containing the typed API envelope (`body` / `Body`), HTTP status, and headers. Python models use snake_case attributes; `to_dict()` restores wire names. Go models and enums are available in the public `api` subpackage. [Every resource method](docs/operations.md) maps to one contract operation, including separate URL, username, slug, and ID variants.
+Run `go run .`. [More examples →](go/README.md)
 
-- An explicit API key overrides `ENVOAPI_API_KEY`; missing or blank keys fail before sending a request.
-- The default base URL is `https://api.envoapi.com`. Override it for a local server or testing.
-- Requests default to a 60-second timeout. TypeScript and Go apply a whole-request deadline; Python uses HTTPX's connect/read/write/pool timeouts, configurable with `httpx.Timeout`.
-- There are no SDK retries or automatic pagination. Pass the returned continuation cursor explicitly. A repeated request can incur another charge, and cancellation does not imply a refund.
-- TypeScript accepts `AbortSignal`, Python async calls support task cancellation, and Go methods take `context.Context`.
-- `APIError` preserves HTTP status, backend code, retryability, request ID, headers, and the response body. `TransportError` wraps network failures; `DecodeError` identifies an invalid successful response. Non-JSON HTTP failures remain API errors.
-- The SDKs preserve known contract fields and nullable/union variants. They do not perform exhaustive JSON Schema validation of responses. Regenerate the clients when the contract changes.
-- Default clients do not follow redirects. Injected transports remain under the caller's control, including any retry or redirect policy they implement.
+## 3. Explore the API
 
-See the language READMEs and `examples/` for local installation and runnable examples. Examples make real, potentially billable requests when pointed at the public API; the verification suite runs them against a local stub.
+Each response includes the result in `body.data`, request metadata in `body.meta`, and HTTP status and headers. Go uses `Body.Data` and `Body.Meta`.
 
-## Generation and release notes
+See the [method reference](docs/operations.md) for all 52 methods. Each language guide covers passing an API key directly, setting a timeout, and handling errors.
 
-TypeScript uses `openapi-typescript` and `openapi-fetch`. Python uses `openapi-python-client` with a small documented [template adaptation](python/templates/README.md). Go uses `oapi-codegen` v2.8.0. Versions and dependencies are pinned in the package lockfiles, Python development lock, and Go module files.
+The default API URL is `https://api.envoapi.com`, with a 60-second timeout. The SDKs do not retry requests or fetch additional pages automatically. For paginated methods, pass the returned continuation cursor to the next call. Requests use your EnvoAPI credits.
 
-The canonical snapshot is copied byte for byte. Synthetic fixtures test serialization shape, metadata, and union branches; they are not valid selectors for live lookup requests. The SDK does not add endpoints merely because related schemas appear in the document.
+## Links
 
-See the [Python release instructions](python/PUBLISHING.md) for building, checking, and uploading the PyPI distribution. Publishing automation is deferred. Future Go tags must include the module subdirectory, for example `go/v0.1.0`; each language can release independently. Future Actions jobs must use runner group `envoapi-runner` and labels `[self-hosted, linux, x64]`.
+- Packages: [npm](https://www.npmjs.com/package/envoapi) · [PyPI](https://pypi.org/project/envoapi/) · [Go documentation](https://pkg.go.dev/github.com/envoapi-official/envoapi-sdks/go)
+- [Report an issue](https://github.com/envoapi-official/envoapi-sdks/issues)
+- [Contributing and releases](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 
 ## License
 
-The SDKs are licensed under [MIT](LICENSE). Identical copies are included in each language directory so standalone distributions carry the license; keep these copies synchronized. The vendored Python generator template retains its original copyright notice in `python/templates/LICENSE`.
+[MIT](LICENSE)
