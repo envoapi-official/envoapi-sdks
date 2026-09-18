@@ -4,10 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "envoapi"
-version = "0.1.0"
+version = "0.1.1"
 description = "The EnvoAPI Python SDK with synchronous and asynchronous clients"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "envoapi", email = "envoapi@gmail.com" }]
 keywords = ["envoapi", "sdk", "api", "async", "httpx"]
 classifiers = [
@@ -28,7 +30,7 @@ Issues = "https://github.com/envoapi-official/envoapi-sdks/issues"
 Changelog = "https://github.com/envoapi-official/envoapi-sdks/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.sdist]
-include = ["/envoapi", "/README.md", "/pyproject.toml"]
+include = ["/envoapi", "/README.md", "/pyproject.toml", "/LICENSE"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["envoapi"]

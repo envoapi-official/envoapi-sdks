@@ -8,7 +8,7 @@ From the repository root:
 pnpm --filter envoapi build
 pnpm --dir typescript pack --pack-destination ../dist
 # In another project:
-pnpm add /absolute/path/to/envoapi-sdks/dist/envoapi-0.1.0.tgz
+pnpm add /absolute/path/to/envoapi-sdks/dist/envoapi-0.1.1.tgz
 ```
 
 ```typescript

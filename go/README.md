@@ -6,7 +6,7 @@ Module: `github.com/envoapi-official/envoapi-sdks/go`. Requires Go 1.25+.
 
 ```sh
 # In your consumer module:
-go get github.com/envoapi-official/envoapi-sdks/go@v0.1.0
+go get github.com/envoapi-official/envoapi-sdks/go@v0.1.1
 ```
 
 ## Usage

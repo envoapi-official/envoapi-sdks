@@ -2,7 +2,7 @@
 
 SDK repository for TypeScript/JavaScript, Python, and Go. All three clients cover the 52 operations in the committed public OpenAPI 3.1 snapshot. Builds and installed clients do not depend on the backend repository or its private contracts package.
 
-The packages are versioned `0.1.0`. The TypeScript/JavaScript SDK is published on npm as `envoapi`; the Python SDK is being prepared for PyPI under the same name. The repository is `envoapi-official/envoapi-sdks`, and the Go module is `github.com/envoapi-official/envoapi-sdks/go`.
+The SDKs use the MIT license. Go is released as `go/v0.1.1`; the npm and Python packages have `0.1.1` prepared for their next releases. TypeScript/JavaScript and Python `0.1.0` are published as `envoapi` on npm and PyPI respectively. The repository is `envoapi-official/envoapi-sdks`, and the Go module is `github.com/envoapi-official/envoapi-sdks/go`.
 
 ## Local development
 
@@ -71,3 +71,7 @@ TypeScript uses `openapi-typescript` and `openapi-fetch`. Python uses `openapi-p
 The canonical snapshot is copied byte for byte. Synthetic fixtures test serialization shape, metadata, and union branches; they are not valid selectors for live lookup requests. The SDK does not add endpoints merely because related schemas appear in the document.
 
 See the [Python release instructions](python/PUBLISHING.md) for building, checking, and uploading the PyPI distribution. Publishing automation is deferred. Future Go tags must include the module subdirectory, for example `go/v0.1.0`; each language can release independently. Future Actions jobs must use runner group `envoapi-runner` and labels `[self-hosted, linux, x64]`.
+
+## License
+
+The SDKs are licensed under [MIT](LICENSE). Identical copies are included in each language directory so standalone distributions carry the license; keep these copies synchronized. The vendored Python generator template retains its original copyright notice in `python/templates/LICENSE`.
