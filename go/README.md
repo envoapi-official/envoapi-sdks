@@ -16,6 +16,8 @@ For a new project, run `go mod init example.com/myapp` first.
 
 ## Set your API key
 
+[Get a free API key with 100 credits](https://envoapi.com/envoapi).
+
 ```sh
 # macOS / Linux
 export ENVOAPI_API_KEY="your-api-key"

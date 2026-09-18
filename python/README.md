@@ -12,6 +12,8 @@ python -m pip install envoapi
 
 ## Set your API key
 
+[Get a free API key with 100 credits](https://envoapi.com/envoapi).
+
 ```sh
 # macOS / Linux
 export ENVOAPI_API_KEY="your-api-key"

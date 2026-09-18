@@ -10,6 +10,8 @@ Use EnvoAPI from your TypeScript, JavaScript, Python, or Go project. Look up pro
 
 ## 1. Set your API key
 
+[Get a free API key with 100 credits](https://envoapi.com/envoapi).
+
 Use your EnvoAPI API key as the value of `ENVOAPI_API_KEY`. All three SDKs read this environment variable automatically.
 
 ```sh
