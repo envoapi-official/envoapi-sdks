@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling==1.29.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "envoapi"
+version = "0.1.0"
+description = "The EnvoAPI Python SDK with synchronous and asynchronous clients"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["httpx>=0.28.1,<0.29", "attrs>=22.2.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["envoapi"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 120

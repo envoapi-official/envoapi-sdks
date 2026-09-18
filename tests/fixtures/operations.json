@@ -1,0 +1,1590 @@
+{
+  "getProfilePosts": {
+    "path": "/v1/profiles/posts",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "posts": [
+          {
+            "url": "https://example.invalid/sample",
+            "text": null,
+            "authorName": "sample",
+            "authorHeadline": null,
+            "authorProfileUrl": null,
+            "contentType": "text",
+            "isRepost": false,
+            "reactionCount": 0,
+            "commentCount": 0,
+            "repostCount": 0
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextCursor": null
+        }
+      }
+    }
+  },
+  "getProfileComments": {
+    "path": "/v1/profiles/comments",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "comments": [
+          {
+            "text": "sample",
+            "createdAt": "2026-01-01T00:00:00Z",
+            "edited": false,
+            "authorName": "sample",
+            "authorHeadline": null,
+            "authorProfileUrl": "https://example.invalid/sample",
+            "reactionCount": 0,
+            "replyCount": 0,
+            "postUrl": "https://example.invalid/sample",
+            "postText": null,
+            "postAuthorName": "sample",
+            "postAuthorHeadline": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextCursor": null
+        }
+      }
+    }
+  },
+  "getProfileReactions": {
+    "path": "/v1/profiles/reactions",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "reactions": [
+          {
+            "reactionType": "LIKE",
+            "reactorName": "sample",
+            "reactorProfileUrl": "https://example.invalid/sample",
+            "postUrl": "https://example.invalid/sample",
+            "postText": null,
+            "postAuthorName": "sample",
+            "postAuthorHeadline": null,
+            "postAuthorProfileUrl": null,
+            "postContentType": "text",
+            "postIsRepost": false,
+            "postReactionCount": 0,
+            "postCommentCount": 0,
+            "postRepostCount": 0
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextCursor": null
+        }
+      }
+    }
+  },
+  "getSimilarProfiles": {
+    "path": "/v1/profiles/similar",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "profiles": [
+          {
+            "username": "sample",
+            "profileUrl": "https://example.invalid/sample",
+            "fullName": "sample",
+            "headline": "sample",
+            "profilePictureUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getCompanyPosts": {
+    "path": "/v1/companies/posts",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "posts": [
+          {
+            "url": "https://example.invalid/sample",
+            "text": null,
+            "author": {
+              "kind": "company",
+              "name": "sample",
+              "url": "https://example.invalid/sample"
+            },
+            "contentType": "text",
+            "isRepost": false,
+            "reactionCount": 0,
+            "commentCount": 0,
+            "repostCount": 0
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextCursor": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getCompanyPeople": {
+    "path": "/v1/companies/people",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "people": [
+          {
+            "id": null,
+            "headline": null,
+            "profilePictureUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 0,
+          "total": 0,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getCompanyProducts": {
+    "path": "/v1/companies/products",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "products": [
+          {
+            "name": "sample",
+            "slug": null,
+            "linkedinUrl": null,
+            "description": null,
+            "isSignatureProduct": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 0,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getCompanyJobs": {
+    "path": "/v1/companies/jobs",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "company": {
+          "name": "sample",
+          "slug": "sample",
+          "url": "https://example.invalid/sample",
+          "logoUrl": null
+        },
+        "jobs": [
+          {
+            "title": "sample",
+            "url": "https://example.invalid/sample",
+            "location": null,
+            "postedAt": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "total": 0,
+          "hasMore": false,
+          "nextStart": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchCompaniesByDomain": {
+    "path": "/v1/companies/by-domain",
+    "query": {
+      "domain": "sample"
+    },
+    "response": {
+      "data": {
+        "companies": [
+          {
+            "name": "sample",
+            "slug": "sample",
+            "linkedinUrl": "https://example.invalid/sample",
+            "description": "sample",
+            "summary": null,
+            "logoUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchCompaniesByKeyword": {
+    "path": "/v1/companies/search",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "companies": [
+          {
+            "name": "sample",
+            "slug": "sample",
+            "linkedinUrl": "https://example.invalid/sample",
+            "description": "sample",
+            "summary": null,
+            "logoUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchSchoolsByKeyword": {
+    "path": "/v1/schools/search",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "schools": [
+          {
+            "id": "sample",
+            "name": "sample",
+            "slug": "sample",
+            "linkedinUrl": "https://example.invalid/sample",
+            "location": null,
+            "studentAndAlumniCount": null,
+            "logoUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchPeopleByKeyword": {
+    "path": "/v1/profiles/search",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "profiles": [
+          {
+            "publicId": null,
+            "name": "sample",
+            "firstName": null,
+            "lastName": null,
+            "headline": null,
+            "summary": null,
+            "location": null,
+            "countryISOCode": null,
+            "industry": null,
+            "linkedinUrl": "https://example.invalid/sample",
+            "profilePictureUrl": null,
+            "positions": [
+              {
+                "title": null,
+                "companyName": null,
+                "location": null,
+                "description": null,
+                "dateRange": null
+              }
+            ],
+            "education": [
+              {
+                "schoolName": null,
+                "degreeName": null,
+                "fieldOfStudy": null,
+                "dateRange": null
+              }
+            ],
+            "skills": [
+              "sample"
+            ],
+            "premium": null,
+            "creator": null,
+            "influencer": null
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchAllResultsByKeyword": {
+    "path": "/v1/search",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "results": [
+          {
+            "kind": "profile",
+            "name": "sample",
+            "description": null,
+            "additionalInfo": null,
+            "url": "https://example.invalid/sample"
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchPostsByHashtag": {
+    "path": "/v1/search/posts/by-hashtag",
+    "query": {
+      "hashtag": "sample"
+    },
+    "response": {
+      "data": {
+        "posts": [
+          {
+            "url": "https://example.invalid/sample",
+            "text": null,
+            "author": {
+              "kind": "company",
+              "name": "sample",
+              "url": "https://example.invalid/sample"
+            },
+            "contentType": "text",
+            "isRepost": false,
+            "reactionCount": 0,
+            "commentCount": 0,
+            "repostCount": 0
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "total": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchPostsByKeyword": {
+    "path": "/v1/search/posts",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "posts": [
+          {
+            "url": "https://example.invalid/sample",
+            "text": null,
+            "author": {
+              "kind": "profile",
+              "name": "sample",
+              "headline": null,
+              "url": "https://example.invalid/sample"
+            },
+            "contentType": "text",
+            "isRepost": false,
+            "reactionCount": 0,
+            "commentCount": 0,
+            "repostCount": 0
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "offset": 0,
+          "limit": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextOffset": null
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "searchLocationsByKeyword": {
+    "path": "/v1/search/locations",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "locations": [
+          {
+            "id": "sample",
+            "name": "sample"
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "searchIndustriesByKeyword": {
+    "path": "/v1/search/industries",
+    "query": {
+      "query": "sample"
+    },
+    "response": {
+      "data": {
+        "industries": [
+          {
+            "id": "sample",
+            "label": "sample"
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "searchServiceCategories": {
+    "path": "/v1/search/service-categories",
+    "query": {},
+    "response": {
+      "data": {
+        "serviceCategories": [
+          {
+            "id": "sample",
+            "label": "sample"
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getSearchTypeahead": {
+    "path": "/v1/search/typeahead",
+    "query": {
+      "query": "sample"
+    },
+    "response": {
+      "data": {
+        "suggestions": [
+          {
+            "text": "sample",
+            "description": null,
+            "type": "company",
+            "url": "https://example.invalid/sample"
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "searchJobs": {
+    "path": "/v1/jobs/search",
+    "query": {
+      "keywords": "sample"
+    },
+    "response": {
+      "data": {
+        "jobs": [
+          {
+            "title": "sample",
+            "url": "https://example.invalid/sample",
+            "location": null,
+            "postedAt": null,
+            "companyName": null,
+            "companyUrl": null,
+            "isPromoted": false,
+            "isEasyApply": false
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getJobDetails": {
+    "path": "/v1/jobs/details",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "url": "https://example.invalid/sample",
+        "title": "sample",
+        "description": "sample",
+        "company": {
+          "name": "sample",
+          "linkedinUrl": "https://example.invalid/sample",
+          "logoUrl": null,
+          "followerCount": null
+        },
+        "location": "sample",
+        "workplaceType": null,
+        "employmentType": null,
+        "postedAt": "2026-01-01T00:00:00Z",
+        "postedOnText": "sample",
+        "status": "open",
+        "isReposted": false
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileDetailsByUrl": {
+    "path": "/v1/profiles/details/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "publicId": "sample",
+        "username": null,
+        "linkedinUrl": null,
+        "fullName": null,
+        "firstName": null,
+        "lastName": null,
+        "headline": null,
+        "about": null,
+        "profileImages": null,
+        "backgroundImages": null,
+        "location": null,
+        "industry": null,
+        "primaryLocale": null,
+        "supportedLocales": null,
+        "isPremium": null,
+        "isInfluencer": null,
+        "isCreator": null,
+        "isOpenToWork": null,
+        "isHiring": null,
+        "isMemorialized": null,
+        "counts": null,
+        "experience": null,
+        "education": null,
+        "skills": null,
+        "certifications": null,
+        "organizations": null,
+        "languages": null,
+        "courses": null,
+        "volunteerExperience": null,
+        "honors": null
+      },
+      "meta": {
+        "creditCost": 0,
+        "sections": {
+          "counts": "complete",
+          "experience": "complete",
+          "education": "complete",
+          "skills": "complete",
+          "certifications": "complete",
+          "organizations": "complete",
+          "languages": "complete",
+          "courses": "complete",
+          "volunteerExperience": "complete",
+          "honors": "complete"
+        },
+        "skills": {
+          "hasMore": null
+        }
+      }
+    }
+  },
+  "getProfileDetailsByUsername": {
+    "path": "/v1/profiles/details/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "publicId": "sample",
+        "username": null,
+        "linkedinUrl": null,
+        "fullName": null,
+        "firstName": null,
+        "lastName": null,
+        "headline": null,
+        "about": null,
+        "profileImages": null,
+        "backgroundImages": null,
+        "location": null,
+        "industry": null,
+        "primaryLocale": null,
+        "supportedLocales": null,
+        "isPremium": null,
+        "isInfluencer": null,
+        "isCreator": null,
+        "isOpenToWork": null,
+        "isHiring": null,
+        "isMemorialized": null,
+        "counts": null,
+        "experience": null,
+        "education": null,
+        "skills": null,
+        "certifications": null,
+        "organizations": null,
+        "languages": null,
+        "courses": null,
+        "volunteerExperience": null,
+        "honors": null
+      },
+      "meta": {
+        "creditCost": 0,
+        "sections": {
+          "counts": "complete",
+          "experience": "complete",
+          "education": "complete",
+          "skills": "complete",
+          "certifications": "complete",
+          "organizations": "complete",
+          "languages": "complete",
+          "courses": "complete",
+          "volunteerExperience": "complete",
+          "honors": "complete"
+        },
+        "skills": {
+          "hasMore": null
+        }
+      }
+    }
+  },
+  "getProfileDetailsById": {
+    "path": "/v1/profiles/details/by-id",
+    "query": {
+      "publicId": "sample"
+    },
+    "response": {
+      "data": {
+        "publicId": "sample",
+        "username": null,
+        "linkedinUrl": null,
+        "fullName": null,
+        "firstName": null,
+        "lastName": null,
+        "headline": null,
+        "about": null,
+        "profileImages": null,
+        "backgroundImages": null,
+        "location": null,
+        "industry": null,
+        "primaryLocale": null,
+        "supportedLocales": null,
+        "isPremium": null,
+        "isInfluencer": null,
+        "isCreator": null,
+        "isOpenToWork": null,
+        "isHiring": null,
+        "isMemorialized": null,
+        "counts": null,
+        "experience": null,
+        "education": null,
+        "skills": null,
+        "certifications": null,
+        "organizations": null,
+        "languages": null,
+        "courses": null,
+        "volunteerExperience": null,
+        "honors": null
+      },
+      "meta": {
+        "creditCost": 0,
+        "sections": {
+          "counts": "complete",
+          "experience": "complete",
+          "education": "complete",
+          "skills": "complete",
+          "certifications": "complete",
+          "organizations": "complete",
+          "languages": "complete",
+          "courses": "complete",
+          "volunteerExperience": "complete",
+          "honors": "complete"
+        },
+        "skills": {
+          "hasMore": null
+        }
+      }
+    }
+  },
+  "getCompanyDetailsByUrl": {
+    "path": "/v1/companies/details/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "publicId": "sample",
+        "name": null,
+        "slug": null,
+        "linkedinUrl": null,
+        "websiteUrl": null,
+        "description": null,
+        "tagline": null,
+        "foundedOn": null,
+        "organizationType": null,
+        "specialties": null,
+        "primaryIndustry": null,
+        "industries": null,
+        "employeeCount": null,
+        "employeeCountRange": null,
+        "followerCount": null,
+        "logo": null,
+        "coverImage": null,
+        "headquarters": null,
+        "locations": null,
+        "products": null
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getCompanyDetailsBySlug": {
+    "path": "/v1/companies/details/by-slug",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "publicId": "sample",
+        "name": null,
+        "slug": null,
+        "linkedinUrl": null,
+        "websiteUrl": null,
+        "description": null,
+        "tagline": null,
+        "foundedOn": null,
+        "organizationType": null,
+        "specialties": null,
+        "primaryIndustry": null,
+        "industries": null,
+        "employeeCount": null,
+        "employeeCountRange": null,
+        "followerCount": null,
+        "logo": null,
+        "coverImage": null,
+        "headquarters": null,
+        "locations": null,
+        "products": null
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getCompanyDetailsById": {
+    "path": "/v1/companies/details/by-id",
+    "query": {
+      "publicId": "sample"
+    },
+    "response": {
+      "data": {
+        "publicId": "sample",
+        "name": null,
+        "slug": null,
+        "linkedinUrl": null,
+        "websiteUrl": null,
+        "description": null,
+        "tagline": null,
+        "foundedOn": null,
+        "organizationType": null,
+        "specialties": null,
+        "primaryIndustry": null,
+        "industries": null,
+        "employeeCount": null,
+        "employeeCountRange": null,
+        "followerCount": null,
+        "logo": null,
+        "coverImage": null,
+        "headquarters": null,
+        "locations": null,
+        "products": null
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileContactByUrl": {
+    "path": "/v1/profiles/contact/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "emailAddress": null,
+        "phoneNumbers": null,
+        "websites": null,
+        "socialHandles": null,
+        "birthdate": null,
+        "address": null
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileContactByUsername": {
+    "path": "/v1/profiles/contact/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "emailAddress": null,
+        "phoneNumbers": null,
+        "websites": null,
+        "socialHandles": null,
+        "birthdate": null,
+        "address": null
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileFullExperienceByUrl": {
+    "path": "/v1/profiles/experience/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "positions": [
+          {
+            "title": null,
+            "company": null,
+            "employmentType": null,
+            "location": null,
+            "description": null,
+            "dateRange": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileFullExperienceByUsername": {
+    "path": "/v1/profiles/experience/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "positions": [
+          {
+            "title": null,
+            "company": null,
+            "employmentType": null,
+            "location": null,
+            "description": null,
+            "dateRange": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileEducationByUrl": {
+    "path": "/v1/profiles/education/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "education": [
+          {
+            "school": null,
+            "degree": null,
+            "fieldOfStudy": null,
+            "grade": null,
+            "activities": null,
+            "description": null,
+            "dateRange": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileEducationByUsername": {
+    "path": "/v1/profiles/education/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "education": [
+          {
+            "school": null,
+            "degree": null,
+            "fieldOfStudy": null,
+            "grade": null,
+            "activities": null,
+            "description": null,
+            "dateRange": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileSkillsByUrl": {
+    "path": "/v1/profiles/skills/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "skills": [
+          "sample"
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextStart": null
+        }
+      }
+    }
+  },
+  "getProfileSkillsByUsername": {
+    "path": "/v1/profiles/skills/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "skills": [
+          "sample"
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextStart": null
+        }
+      }
+    }
+  },
+  "getProfileCertificationsByUrl": {
+    "path": "/v1/profiles/certifications/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "certifications": [
+          {
+            "name": "sample",
+            "issuerName": "sample",
+            "issuedOn": {
+              "year": 1,
+              "month": null,
+              "day": null
+            },
+            "expiresOn": {
+              "year": 1,
+              "month": null,
+              "day": null
+            },
+            "doesNotExpire": false,
+            "credentialCode": "sample",
+            "credentialUrl": "https://example.invalid/sample",
+            "description": "sample"
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileCertificationsByUsername": {
+    "path": "/v1/profiles/certifications/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "certifications": [
+          {
+            "name": "sample",
+            "issuerName": "sample",
+            "issuedOn": {
+              "year": 1,
+              "month": null,
+              "day": null
+            },
+            "expiresOn": {
+              "year": 1,
+              "month": null,
+              "day": null
+            },
+            "doesNotExpire": false,
+            "credentialCode": "sample",
+            "credentialUrl": "https://example.invalid/sample",
+            "description": "sample"
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileCoursesByUrl": {
+    "path": "/v1/profiles/courses/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "courses": [
+          {
+            "name": "sample",
+            "associatedWith": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileCoursesByUsername": {
+    "path": "/v1/profiles/courses/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "courses": [
+          {
+            "name": "sample",
+            "associatedWith": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileCompanyInterestsByUrl": {
+    "path": "/v1/profiles/company-interests/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "companyInterests": [
+          {
+            "publicId": "sample",
+            "name": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextStart": null
+        }
+      }
+    }
+  },
+  "getProfileCompanyInterestsByUsername": {
+    "path": "/v1/profiles/company-interests/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "companyInterests": [
+          {
+            "publicId": "sample",
+            "name": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextStart": null
+        }
+      }
+    }
+  },
+  "getProfileCompanyInterestsById": {
+    "path": "/v1/profiles/company-interests/by-id",
+    "query": {
+      "publicId": "sample"
+    },
+    "response": {
+      "data": {
+        "companyInterests": [
+          {
+            "publicId": "sample",
+            "name": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0,
+        "paging": {
+          "start": 0,
+          "count": 1,
+          "returned": 0,
+          "hasMore": false,
+          "nextStart": null
+        }
+      }
+    }
+  },
+  "getProfileVolunteerExperienceByUrl": {
+    "path": "/v1/profiles/volunteer-experience/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "volunteerExperience": [
+          {
+            "role": null,
+            "organization": null,
+            "dateRange": null,
+            "description": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getProfileVolunteerExperienceByUsername": {
+    "path": "/v1/profiles/volunteer-experience/by-username",
+    "query": {
+      "username": "sample"
+    },
+    "response": {
+      "data": {
+        "volunteerExperience": [
+          {
+            "role": null,
+            "organization": null,
+            "dateRange": null,
+            "description": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getPostByUrl": {
+    "path": "/v1/posts/details/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "url": "https://example.invalid/sample",
+        "text": null,
+        "author": {
+          "kind": "profile",
+          "name": "sample",
+          "headline": null,
+          "url": "https://example.invalid/sample",
+          "pictureUrl": null
+        },
+        "contentType": "text",
+        "isRepost": false,
+        "reactionCount": 0,
+        "commentCount": 0,
+        "repostCount": 0,
+        "reactions": [
+          {
+            "type": "LIKE",
+            "count": 0
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getPostBySlug": {
+    "path": "/v1/posts/details/by-slug",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "url": "https://example.invalid/sample",
+        "text": null,
+        "author": {
+          "kind": "profile",
+          "name": "sample",
+          "headline": null,
+          "url": "https://example.invalid/sample",
+          "pictureUrl": null
+        },
+        "contentType": "text",
+        "isRepost": false,
+        "reactionCount": 0,
+        "commentCount": 0,
+        "repostCount": 0,
+        "reactions": [
+          {
+            "type": "LIKE",
+            "count": 0
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getPostCommentsByUrl": {
+    "path": "/v1/posts/comments/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "comments": [
+          {
+            "text": "sample",
+            "createdAt": null,
+            "edited": null,
+            "author": {
+              "kind": "profile",
+              "name": "sample",
+              "headline": null,
+              "url": "https://example.invalid/sample",
+              "pictureUrl": null
+            },
+            "reactionCount": 0,
+            "replyCount": 0,
+            "replies": [
+              {
+                "text": "sample",
+                "createdAt": null,
+                "edited": null,
+                "author": {
+                  "kind": "profile",
+                  "name": "sample",
+                  "headline": null,
+                  "url": "https://example.invalid/sample",
+                  "pictureUrl": null
+                },
+                "reactionCount": 0,
+                "replyCount": 0
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 0,
+          "total": 0,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getPostCommentsBySlug": {
+    "path": "/v1/posts/comments/by-slug",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "comments": [
+          {
+            "text": "sample",
+            "createdAt": null,
+            "edited": null,
+            "author": {
+              "kind": "profile",
+              "name": "sample",
+              "headline": null,
+              "url": "https://example.invalid/sample",
+              "pictureUrl": null
+            },
+            "reactionCount": 0,
+            "replyCount": 0,
+            "replies": [
+              {
+                "text": "sample",
+                "createdAt": null,
+                "edited": null,
+                "author": {
+                  "kind": "profile",
+                  "name": "sample",
+                  "headline": null,
+                  "url": "https://example.invalid/sample",
+                  "pictureUrl": null
+                },
+                "reactionCount": 0,
+                "replyCount": 0
+              }
+            ]
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 0,
+          "total": 0,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getPostReactionsByUrl": {
+    "path": "/v1/posts/reactions/by-url",
+    "query": {
+      "url": "https://example.invalid/sample",
+      "reactionType": "LIKE"
+    },
+    "response": {
+      "data": {
+        "reactions": [
+          {
+            "reactionType": "LIKE",
+            "reactor": {
+              "kind": "profile",
+              "publicId": null,
+              "name": "sample",
+              "headline": null,
+              "url": null,
+              "pictureUrl": null
+            }
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 0,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getPostReactionsBySlug": {
+    "path": "/v1/posts/reactions/by-slug",
+    "query": {
+      "slug": "sample",
+      "reactionType": "LIKE"
+    },
+    "response": {
+      "data": {
+        "reactions": [
+          {
+            "reactionType": "LIKE",
+            "reactor": {
+              "kind": "profile",
+              "publicId": null,
+              "name": "sample",
+              "headline": null,
+              "url": null,
+              "pictureUrl": null
+            }
+          }
+        ]
+      },
+      "meta": {
+        "paging": {
+          "start": 0,
+          "count": 0,
+          "hasMore": false
+        },
+        "creditCost": 0
+      }
+    }
+  },
+  "getSimilarCompaniesByUrl": {
+    "path": "/v1/companies/similar/by-url",
+    "query": {
+      "url": "https://example.invalid/sample"
+    },
+    "response": {
+      "data": {
+        "companies": [
+          {
+            "slug": "sample",
+            "companyUrl": "https://example.invalid/sample",
+            "name": "sample",
+            "industry": "sample",
+            "logoUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  },
+  "getSimilarCompaniesBySlug": {
+    "path": "/v1/companies/similar/by-slug",
+    "query": {
+      "slug": "sample"
+    },
+    "response": {
+      "data": {
+        "companies": [
+          {
+            "slug": "sample",
+            "companyUrl": "https://example.invalid/sample",
+            "name": "sample",
+            "industry": "sample",
+            "logoUrl": null
+          }
+        ]
+      },
+      "meta": {
+        "creditCost": 0
+      }
+    }
+  }
+}

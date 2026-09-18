@@ -1,0 +1,13 @@
+node_modules/
+.venv/
+.tools/
+dist/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+.env
+*.tgz
+*.whl
+coverage/

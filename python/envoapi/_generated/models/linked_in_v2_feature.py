@@ -1,0 +1,41 @@
+from enum import StrEnum
+
+
+class LinkedInV2Feature(StrEnum):
+    COMPANYCARDS = "companyCards"
+    COMPANYDOMAINSEARCH = "companyDomainSearch"
+    COMPANYJOBS = "companyJobs"
+    COMPANYNOTIFICATIONS = "companyNotifications"
+    COMPANYPAGE = "companyPage"
+    COMPANYPEOPLE = "companyPeople"
+    COMPANYPEOPLEGROUPINGS = "companyPeopleGroupings"
+    COMPANYPOSTS = "companyPosts"
+    COMPANYPRODUCTS = "companyProducts"
+    COMPANYSIMILAR = "companySimilar"
+    HASHTAGPOSTSSEARCH = "hashtagPostsSearch"
+    INDUSTRYSEARCH = "industrySearch"
+    JOBDEEPLINK = "jobDeepLink"
+    JOBDEEPLINKFILTERS = "jobDeepLinkFilters"
+    JOBDETAILS = "jobDetails"
+    JOBFILTERS = "jobFilters"
+    JOBSEARCH = "jobSearch"
+    JOBSFEED = "jobsFeed"
+    LOCATIONSEARCH = "locationSearch"
+    POST = "post"
+    POSTCOMMENTS = "postComments"
+    POSTREACTIONS = "postReactions"
+    PROFILEACTIVITY = "profileActivity"
+    PROFILEDETAILS = "profileDetails"
+    PROFILERELATED = "profileRelated"
+    PROFILESECTION = "profileSection"
+    PROFILETOPCARD = "profileTopCard"
+    SCHOOLSEARCH = "schoolSearch"
+    SEARCHCLUSTERS = "searchClusters"
+    SEARCHFILTERS = "searchFilters"
+    SEARCHHOME = "searchHome"
+    SEARCHPOSTS = "searchPosts"
+    SEARCHTYPEAHEAD = "searchTypeahead"
+    SERVICECATEGORYSEARCH = "serviceCategorySearch"
+
+    def __str__(self) -> str:
+        return str(self.value)

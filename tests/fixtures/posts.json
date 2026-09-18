@@ -1,0 +1,7 @@
+{
+  "data": {"posts": []},
+  "meta": {
+    "creditCost": 1,
+    "paging": {"count": 10, "returned": 0, "hasMore": true, "nextCursor": "cursor_Next123"}
+  }
+}

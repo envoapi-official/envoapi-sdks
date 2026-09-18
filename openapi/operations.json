@@ -1,0 +1,522 @@
+[
+  {
+    "operationId": "getProfilePosts",
+    "method": "GET",
+    "path": "/v1/profiles/posts",
+    "resource": "profiles",
+    "typescript": "getPosts",
+    "python": "get_posts",
+    "go": "GetPosts",
+    "response": "ProfilePostsSuccess"
+  },
+  {
+    "operationId": "getProfileComments",
+    "method": "GET",
+    "path": "/v1/profiles/comments",
+    "resource": "profiles",
+    "typescript": "getComments",
+    "python": "get_comments",
+    "go": "GetComments",
+    "response": "ProfileCommentsSuccess"
+  },
+  {
+    "operationId": "getProfileReactions",
+    "method": "GET",
+    "path": "/v1/profiles/reactions",
+    "resource": "profiles",
+    "typescript": "getReactions",
+    "python": "get_reactions",
+    "go": "GetReactions",
+    "response": "ProfileReactionsSuccess"
+  },
+  {
+    "operationId": "getSimilarProfiles",
+    "method": "GET",
+    "path": "/v1/profiles/similar",
+    "resource": "profiles",
+    "typescript": "getSimilar",
+    "python": "get_similar",
+    "go": "GetSimilar",
+    "response": "SimilarProfilesSuccess"
+  },
+  {
+    "operationId": "getCompanyPosts",
+    "method": "GET",
+    "path": "/v1/companies/posts",
+    "resource": "companies",
+    "typescript": "getPosts",
+    "python": "get_posts",
+    "go": "GetPosts",
+    "response": "CompanyPostsSuccess"
+  },
+  {
+    "operationId": "getCompanyPeople",
+    "method": "GET",
+    "path": "/v1/companies/people",
+    "resource": "companies",
+    "typescript": "getPeople",
+    "python": "get_people",
+    "go": "GetPeople",
+    "response": "CompanyPeopleSuccess"
+  },
+  {
+    "operationId": "getCompanyProducts",
+    "method": "GET",
+    "path": "/v1/companies/products",
+    "resource": "companies",
+    "typescript": "getProducts",
+    "python": "get_products",
+    "go": "GetProducts",
+    "response": "LinkedInV2CompanyProductsSuccess"
+  },
+  {
+    "operationId": "getCompanyJobs",
+    "method": "GET",
+    "path": "/v1/companies/jobs",
+    "resource": "companies",
+    "typescript": "getJobs",
+    "python": "get_jobs",
+    "go": "GetJobs",
+    "response": "CompanyJobsSuccess"
+  },
+  {
+    "operationId": "searchCompaniesByDomain",
+    "method": "GET",
+    "path": "/v1/companies/by-domain",
+    "resource": "companies",
+    "typescript": "searchByDomain",
+    "python": "search_by_domain",
+    "go": "SearchByDomain",
+    "response": "CompanyDomainSearchSuccess"
+  },
+  {
+    "operationId": "searchCompaniesByKeyword",
+    "method": "GET",
+    "path": "/v1/companies/search",
+    "resource": "companies",
+    "typescript": "searchByKeyword",
+    "python": "search_by_keyword",
+    "go": "SearchByKeyword",
+    "response": "CompanyDomainSearchSuccess"
+  },
+  {
+    "operationId": "searchSchoolsByKeyword",
+    "method": "GET",
+    "path": "/v1/schools/search",
+    "resource": "schools",
+    "typescript": "searchByKeyword",
+    "python": "search_by_keyword",
+    "go": "SearchByKeyword",
+    "response": "LinkedInV2SchoolSearchSuccess"
+  },
+  {
+    "operationId": "searchPeopleByKeyword",
+    "method": "GET",
+    "path": "/v1/profiles/search",
+    "resource": "profiles",
+    "typescript": "searchByKeyword",
+    "python": "search_by_keyword",
+    "go": "SearchByKeyword",
+    "response": "PeopleKeywordSearchSuccess"
+  },
+  {
+    "operationId": "searchAllResultsByKeyword",
+    "method": "GET",
+    "path": "/v1/search",
+    "resource": "search",
+    "typescript": "searchAllResultsByKeyword",
+    "python": "search_all_results_by_keyword",
+    "go": "SearchAllResultsByKeyword",
+    "response": "KeywordSearchSuccess"
+  },
+  {
+    "operationId": "searchPostsByHashtag",
+    "method": "GET",
+    "path": "/v1/search/posts/by-hashtag",
+    "resource": "search",
+    "typescript": "searchPostsByHashtag",
+    "python": "search_posts_by_hashtag",
+    "go": "SearchPostsByHashtag",
+    "response": "HashtagPostsSearchSuccess"
+  },
+  {
+    "operationId": "searchPostsByKeyword",
+    "method": "GET",
+    "path": "/v1/search/posts",
+    "resource": "search",
+    "typescript": "searchPostsByKeyword",
+    "python": "search_posts_by_keyword",
+    "go": "SearchPostsByKeyword",
+    "response": "LinkedInV2SearchPostsSuccess"
+  },
+  {
+    "operationId": "searchLocationsByKeyword",
+    "method": "GET",
+    "path": "/v1/search/locations",
+    "resource": "search",
+    "typescript": "searchLocationsByKeyword",
+    "python": "search_locations_by_keyword",
+    "go": "SearchLocationsByKeyword",
+    "response": "LinkedInV2LocationSearchSuccess"
+  },
+  {
+    "operationId": "searchIndustriesByKeyword",
+    "method": "GET",
+    "path": "/v1/search/industries",
+    "resource": "search",
+    "typescript": "searchIndustriesByKeyword",
+    "python": "search_industries_by_keyword",
+    "go": "SearchIndustriesByKeyword",
+    "response": "IndustrySearchSuccess"
+  },
+  {
+    "operationId": "searchServiceCategories",
+    "method": "GET",
+    "path": "/v1/search/service-categories",
+    "resource": "search",
+    "typescript": "searchServiceCategories",
+    "python": "search_service_categories",
+    "go": "SearchServiceCategories",
+    "response": "LinkedInV2ServiceCategorySearchSuccess"
+  },
+  {
+    "operationId": "getSearchTypeahead",
+    "method": "GET",
+    "path": "/v1/search/typeahead",
+    "resource": "search",
+    "typescript": "getTypeahead",
+    "python": "get_typeahead",
+    "go": "GetTypeahead",
+    "response": "LinkedInV2SearchTypeaheadSuccess"
+  },
+  {
+    "operationId": "searchJobs",
+    "method": "GET",
+    "path": "/v1/jobs/search",
+    "resource": "jobs",
+    "typescript": "search",
+    "python": "search",
+    "go": "Search",
+    "response": "JobSearchSuccess"
+  },
+  {
+    "operationId": "getJobDetails",
+    "method": "GET",
+    "path": "/v1/jobs/details",
+    "resource": "jobs",
+    "typescript": "getDetails",
+    "python": "get_details",
+    "go": "GetDetails",
+    "response": "JobDetailsSuccess"
+  },
+  {
+    "operationId": "getProfileDetailsByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/details/by-url",
+    "resource": "profiles",
+    "typescript": "getDetailsByUrl",
+    "python": "get_details_by_url",
+    "go": "GetDetailsByUrl",
+    "response": "ProfileSuccess"
+  },
+  {
+    "operationId": "getProfileDetailsByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/details/by-username",
+    "resource": "profiles",
+    "typescript": "getDetailsByUsername",
+    "python": "get_details_by_username",
+    "go": "GetDetailsByUsername",
+    "response": "ProfileSuccess"
+  },
+  {
+    "operationId": "getProfileDetailsById",
+    "method": "GET",
+    "path": "/v1/profiles/details/by-id",
+    "resource": "profiles",
+    "typescript": "getDetailsById",
+    "python": "get_details_by_id",
+    "go": "GetDetailsById",
+    "response": "ProfileSuccess"
+  },
+  {
+    "operationId": "getCompanyDetailsByUrl",
+    "method": "GET",
+    "path": "/v1/companies/details/by-url",
+    "resource": "companies",
+    "typescript": "getDetailsByUrl",
+    "python": "get_details_by_url",
+    "go": "GetDetailsByUrl",
+    "response": "CompanySuccess"
+  },
+  {
+    "operationId": "getCompanyDetailsBySlug",
+    "method": "GET",
+    "path": "/v1/companies/details/by-slug",
+    "resource": "companies",
+    "typescript": "getDetailsBySlug",
+    "python": "get_details_by_slug",
+    "go": "GetDetailsBySlug",
+    "response": "CompanySuccess"
+  },
+  {
+    "operationId": "getCompanyDetailsById",
+    "method": "GET",
+    "path": "/v1/companies/details/by-id",
+    "resource": "companies",
+    "typescript": "getDetailsById",
+    "python": "get_details_by_id",
+    "go": "GetDetailsById",
+    "response": "CompanySuccess"
+  },
+  {
+    "operationId": "getProfileContactByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/contact/by-url",
+    "resource": "profiles",
+    "typescript": "getContactByUrl",
+    "python": "get_contact_by_url",
+    "go": "GetContactByUrl",
+    "response": "ProfileContactSuccess"
+  },
+  {
+    "operationId": "getProfileContactByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/contact/by-username",
+    "resource": "profiles",
+    "typescript": "getContactByUsername",
+    "python": "get_contact_by_username",
+    "go": "GetContactByUsername",
+    "response": "ProfileContactSuccess"
+  },
+  {
+    "operationId": "getProfileFullExperienceByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/experience/by-url",
+    "resource": "profiles",
+    "typescript": "getFullExperienceByUrl",
+    "python": "get_full_experience_by_url",
+    "go": "GetFullExperienceByUrl",
+    "response": "ProfileExperienceSuccess"
+  },
+  {
+    "operationId": "getProfileFullExperienceByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/experience/by-username",
+    "resource": "profiles",
+    "typescript": "getFullExperienceByUsername",
+    "python": "get_full_experience_by_username",
+    "go": "GetFullExperienceByUsername",
+    "response": "ProfileExperienceSuccess"
+  },
+  {
+    "operationId": "getProfileEducationByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/education/by-url",
+    "resource": "profiles",
+    "typescript": "getEducationByUrl",
+    "python": "get_education_by_url",
+    "go": "GetEducationByUrl",
+    "response": "ProfileEducationSuccess"
+  },
+  {
+    "operationId": "getProfileEducationByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/education/by-username",
+    "resource": "profiles",
+    "typescript": "getEducationByUsername",
+    "python": "get_education_by_username",
+    "go": "GetEducationByUsername",
+    "response": "ProfileEducationSuccess"
+  },
+  {
+    "operationId": "getProfileSkillsByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/skills/by-url",
+    "resource": "profiles",
+    "typescript": "getSkillsByUrl",
+    "python": "get_skills_by_url",
+    "go": "GetSkillsByUrl",
+    "response": "ProfileSkillsSuccess"
+  },
+  {
+    "operationId": "getProfileSkillsByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/skills/by-username",
+    "resource": "profiles",
+    "typescript": "getSkillsByUsername",
+    "python": "get_skills_by_username",
+    "go": "GetSkillsByUsername",
+    "response": "ProfileSkillsSuccess"
+  },
+  {
+    "operationId": "getProfileCertificationsByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/certifications/by-url",
+    "resource": "profiles",
+    "typescript": "getCertificationsByUrl",
+    "python": "get_certifications_by_url",
+    "go": "GetCertificationsByUrl",
+    "response": "ProfileCertificationsSuccess"
+  },
+  {
+    "operationId": "getProfileCertificationsByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/certifications/by-username",
+    "resource": "profiles",
+    "typescript": "getCertificationsByUsername",
+    "python": "get_certifications_by_username",
+    "go": "GetCertificationsByUsername",
+    "response": "ProfileCertificationsSuccess"
+  },
+  {
+    "operationId": "getProfileCoursesByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/courses/by-url",
+    "resource": "profiles",
+    "typescript": "getCoursesByUrl",
+    "python": "get_courses_by_url",
+    "go": "GetCoursesByUrl",
+    "response": "ProfileCoursesSuccess"
+  },
+  {
+    "operationId": "getProfileCoursesByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/courses/by-username",
+    "resource": "profiles",
+    "typescript": "getCoursesByUsername",
+    "python": "get_courses_by_username",
+    "go": "GetCoursesByUsername",
+    "response": "ProfileCoursesSuccess"
+  },
+  {
+    "operationId": "getProfileCompanyInterestsByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/company-interests/by-url",
+    "resource": "profiles",
+    "typescript": "getCompanyInterestsByUrl",
+    "python": "get_company_interests_by_url",
+    "go": "GetCompanyInterestsByUrl",
+    "response": "ProfileCompanyInterestsSuccess"
+  },
+  {
+    "operationId": "getProfileCompanyInterestsByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/company-interests/by-username",
+    "resource": "profiles",
+    "typescript": "getCompanyInterestsByUsername",
+    "python": "get_company_interests_by_username",
+    "go": "GetCompanyInterestsByUsername",
+    "response": "ProfileCompanyInterestsSuccess"
+  },
+  {
+    "operationId": "getProfileCompanyInterestsById",
+    "method": "GET",
+    "path": "/v1/profiles/company-interests/by-id",
+    "resource": "profiles",
+    "typescript": "getCompanyInterestsById",
+    "python": "get_company_interests_by_id",
+    "go": "GetCompanyInterestsById",
+    "response": "ProfileCompanyInterestsSuccess"
+  },
+  {
+    "operationId": "getProfileVolunteerExperienceByUrl",
+    "method": "GET",
+    "path": "/v1/profiles/volunteer-experience/by-url",
+    "resource": "profiles",
+    "typescript": "getVolunteerExperienceByUrl",
+    "python": "get_volunteer_experience_by_url",
+    "go": "GetVolunteerExperienceByUrl",
+    "response": "ProfileVolunteerExperienceSuccess"
+  },
+  {
+    "operationId": "getProfileVolunteerExperienceByUsername",
+    "method": "GET",
+    "path": "/v1/profiles/volunteer-experience/by-username",
+    "resource": "profiles",
+    "typescript": "getVolunteerExperienceByUsername",
+    "python": "get_volunteer_experience_by_username",
+    "go": "GetVolunteerExperienceByUsername",
+    "response": "ProfileVolunteerExperienceSuccess"
+  },
+  {
+    "operationId": "getPostByUrl",
+    "method": "GET",
+    "path": "/v1/posts/details/by-url",
+    "resource": "posts",
+    "typescript": "getByUrl",
+    "python": "get_by_url",
+    "go": "GetByUrl",
+    "response": "LinkedInV2PostSuccess"
+  },
+  {
+    "operationId": "getPostBySlug",
+    "method": "GET",
+    "path": "/v1/posts/details/by-slug",
+    "resource": "posts",
+    "typescript": "getBySlug",
+    "python": "get_by_slug",
+    "go": "GetBySlug",
+    "response": "LinkedInV2PostSuccess"
+  },
+  {
+    "operationId": "getPostCommentsByUrl",
+    "method": "GET",
+    "path": "/v1/posts/comments/by-url",
+    "resource": "posts",
+    "typescript": "getCommentsByUrl",
+    "python": "get_comments_by_url",
+    "go": "GetCommentsByUrl",
+    "response": "LinkedInV2PostCommentsSuccess"
+  },
+  {
+    "operationId": "getPostCommentsBySlug",
+    "method": "GET",
+    "path": "/v1/posts/comments/by-slug",
+    "resource": "posts",
+    "typescript": "getCommentsBySlug",
+    "python": "get_comments_by_slug",
+    "go": "GetCommentsBySlug",
+    "response": "LinkedInV2PostCommentsSuccess"
+  },
+  {
+    "operationId": "getPostReactionsByUrl",
+    "method": "GET",
+    "path": "/v1/posts/reactions/by-url",
+    "resource": "posts",
+    "typescript": "getReactionsByUrl",
+    "python": "get_reactions_by_url",
+    "go": "GetReactionsByUrl",
+    "response": "LinkedInV2PostReactionsSuccess"
+  },
+  {
+    "operationId": "getPostReactionsBySlug",
+    "method": "GET",
+    "path": "/v1/posts/reactions/by-slug",
+    "resource": "posts",
+    "typescript": "getReactionsBySlug",
+    "python": "get_reactions_by_slug",
+    "go": "GetReactionsBySlug",
+    "response": "LinkedInV2PostReactionsSuccess"
+  },
+  {
+    "operationId": "getSimilarCompaniesByUrl",
+    "method": "GET",
+    "path": "/v1/companies/similar/by-url",
+    "resource": "companies",
+    "typescript": "getSimilarByUrl",
+    "python": "get_similar_by_url",
+    "go": "GetSimilarByUrl",
+    "response": "SimilarCompaniesSuccess"
+  },
+  {
+    "operationId": "getSimilarCompaniesBySlug",
+    "method": "GET",
+    "path": "/v1/companies/similar/by-slug",
+    "resource": "companies",
+    "typescript": "getSimilarBySlug",
+    "python": "get_similar_by_slug",
+    "go": "GetSimilarBySlug",
+    "response": "SimilarCompaniesSuccess"
+  }
+]
