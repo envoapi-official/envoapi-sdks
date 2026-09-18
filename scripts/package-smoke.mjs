@@ -61,7 +61,7 @@ try {
     path.join(js, "package.json"),
     JSON.stringify({ name: "sdk-consumer", private: true, type: "module" }),
   );
-  await run("pnpm", ["add", path.join(root, "dist/envoapi-0.1.2.tgz")], js);
+  await run("pnpm", ["add", path.join(root, "dist/envoapi-0.1.3.tgz")], js);
   fs.copyFileSync(
     path.join(root, "examples/typescript/posts.mjs"),
     path.join(js, "posts.mjs"),

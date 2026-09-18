@@ -1,5 +1,10 @@
 # Changelog
 
+## npm 0.1.3 — 2026-09-18
+
+- Add the GitHub repository URL and TypeScript package directory to npm metadata.
+- Update the SDK user-agent version to `0.1.3`; no API changes.
+
 ## npm / Python 0.1.2 and Go 0.1.3 — 2026-09-18
 
 - Show direct API key configuration in the SDK READMEs and clarify that `ENVOAPI_API_KEY` is optional.

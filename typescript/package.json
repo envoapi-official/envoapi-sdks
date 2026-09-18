@@ -1,8 +1,13 @@
 {
   "name": "envoapi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "description": "The EnvoAPI TypeScript and JavaScript SDK",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/envoapi-official/envoapi-sdks.git",
+    "directory": "typescript"
+  },
   "type": "module",
   "engines": {
     "node": ">=22"
