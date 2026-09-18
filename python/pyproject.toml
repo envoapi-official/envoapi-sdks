@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "envoapi"
-version = "0.1.1"
+version = "0.1.2"
 description = "The EnvoAPI Python SDK with synchronous and asynchronous clients"
 readme = "README.md"
 requires-python = ">=3.11"

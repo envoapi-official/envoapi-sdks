@@ -12,7 +12,9 @@ Use EnvoAPI from your TypeScript, JavaScript, Python, or Go project. Look up pro
 
 [Get a free API key with 100 credits](https://envoapi.com/signup).
 
-Use your EnvoAPI API key as the value of `ENVOAPI_API_KEY`. All three SDKs read this environment variable automatically.
+Pass your API key directly when creating the client, as shown in the examples below. **The `ENVOAPI_API_KEY` environment variable is optional.** An explicitly supplied key takes precedence over the environment variable.
+
+Alternatively, set `ENVOAPI_API_KEY` and omit the key argument when creating the client. All three SDKs read this environment variable automatically:
 
 ```sh
 # macOS / Linux
@@ -24,7 +26,7 @@ export ENVOAPI_API_KEY="your-api-key"
 $env:ENVOAPI_API_KEY="your-api-key"
 ```
 
-Run your app from the same terminal, or set this variable in your hosting provider's environment settings. Keep the key on your server and out of source control.
+If you use the environment variable, run your app from the same terminal, or set it in your hosting provider's environment settings. Keep the key on your server and out of source control.
 
 ## 2. Make a request
 
@@ -39,7 +41,7 @@ npm install envoapi
 ```javascript
 import { EnvoAPI } from 'envoapi';
 
-const client = new EnvoAPI();
+const client = new EnvoAPI({ apiKey: 'your-api-key' });
 const response = await client.profiles.getPosts({ username: 'satyanadella' });
 
 console.log(response.body.data.posts);
@@ -59,7 +61,7 @@ Save as `app.py`:
 ```python
 from envoapi import EnvoAPI
 
-with EnvoAPI() as client:
+with EnvoAPI(api_key="your-api-key") as client:
     response = client.profiles.get_posts(username="satyanadella")
     print(response.body.data.posts)
     print(response.body.meta.credit_cost)
@@ -89,7 +91,7 @@ import (
 )
 
 func main() {
-    client, err := envoapi.NewClient()
+    client, err := envoapi.NewClient(envoapi.WithAPIKey("your-api-key"))
     if err != nil {
         log.Fatal(err)
     }

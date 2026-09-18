@@ -18,6 +18,10 @@ For a new project, run `go mod init example.com/myapp` first.
 
 [Get a free API key with 100 credits](https://envoapi.com/signup).
 
+Pass your key directly with `envoapi.NewClient(envoapi.WithAPIKey("your-api-key"))`. **The `ENVOAPI_API_KEY` environment variable is optional.** An explicitly supplied key takes precedence.
+
+Alternatively, set the environment variable and omit `WithAPIKey`:
+
 ```sh
 # macOS / Linux
 export ENVOAPI_API_KEY="your-api-key"
@@ -28,7 +32,7 @@ export ENVOAPI_API_KEY="your-api-key"
 $env:ENVOAPI_API_KEY="your-api-key"
 ```
 
-Run your app from the same terminal. `envoapi.NewClient()` reads this variable automatically. Keep your key out of source control.
+If you use the environment variable, run your app from the same terminal. `envoapi.NewClient()` reads it automatically. Keep your key out of source control.
 
 ## Make a request
 
@@ -46,7 +50,7 @@ import (
 )
 
 func main() {
-    client, err := envoapi.NewClient()
+    client, err := envoapi.NewClient(envoapi.WithAPIKey("your-api-key"))
     if err != nil {
         log.Fatal(err)
     }
@@ -76,9 +80,9 @@ Replace `satyanadella` with the profile username you want to look up. In an HTTP
 You can also pass a key from your app's configuration. An explicit key overrides `ENVOAPI_API_KEY`.
 
 ```go
-// Add "os" and "time" to your imports. Use this inside your function.
+// Add "time" to your imports. Use this inside your function.
 client, err := envoapi.NewClient(
-    envoapi.WithAPIKey(os.Getenv("ENVOAPI_API_KEY")),
+    envoapi.WithAPIKey("your-api-key"),
     envoapi.WithTimeout(30*time.Second),
 )
 if err != nil {

@@ -58,7 +58,7 @@ def _options(api_key: str | None, base_url: str, timeout: float | httpx.Timeout)
         base_url=base_url.rstrip("/"),
         timeout=timeout,
         follow_redirects=False,
-        headers={"Authorization": f"Bearer {key}", "Accept": "application/json", "User-Agent": "envoapi-python/0.1.1"},
+        headers={"Authorization": f"Bearer {key}", "Accept": "application/json", "User-Agent": "envoapi-python/0.1.2"},
     )
 
 

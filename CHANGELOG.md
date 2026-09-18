@@ -1,5 +1,11 @@
 # Changelog
 
+## npm / Python 0.1.2 and Go 0.1.3 — 2026-09-18
+
+- Show direct API key configuration in the SDK READMEs and clarify that `ENVOAPI_API_KEY` is optional.
+- Document that an explicitly supplied key takes precedence over the environment variable.
+- Update SDK user-agent versions; no API changes.
+
 ## Go 0.1.2 — 2026-09-18
 
 - Rewrite the package README with installation, API key setup, runnable examples, and error handling.

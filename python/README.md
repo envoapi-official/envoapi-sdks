@@ -14,6 +14,10 @@ python -m pip install envoapi
 
 [Get a free API key with 100 credits](https://envoapi.com/signup).
 
+Pass your key directly with `EnvoAPI(api_key="your-api-key")` or `AsyncEnvoAPI(api_key="your-api-key")`. **The `ENVOAPI_API_KEY` environment variable is optional.** An explicitly supplied key takes precedence.
+
+Alternatively, set the environment variable and omit `api_key`:
+
 ```sh
 # macOS / Linux
 export ENVOAPI_API_KEY="your-api-key"
@@ -24,7 +28,7 @@ export ENVOAPI_API_KEY="your-api-key"
 $env:ENVOAPI_API_KEY="your-api-key"
 ```
 
-Run your app from the same terminal. Both clients read this variable automatically. Keep your key out of source control.
+If you use the environment variable, run your app from the same terminal. Both clients read it automatically when `api_key` is omitted. Keep your key out of source control.
 
 ## Make a request
 
@@ -33,7 +37,7 @@ Save as `app.py`:
 ```python
 from envoapi import EnvoAPI
 
-with EnvoAPI() as client:
+with EnvoAPI(api_key="your-api-key") as client:
     response = client.profiles.get_posts(username="satyanadella")
     print(response.body.data.posts)
     print(response.body.meta.credit_cost)
@@ -54,7 +58,7 @@ import asyncio
 from envoapi import AsyncEnvoAPI
 
 async def main():
-    async with AsyncEnvoAPI() as client:
+    async with AsyncEnvoAPI(api_key="your-api-key") as client:
         response = await client.profiles.get_posts(username="satyanadella")
         print(response.body.data.posts)
 
@@ -68,10 +72,9 @@ In an app that already has an event loop, use `await` inside your async function
 You can also pass a key from your app's configuration. An explicit key overrides `ENVOAPI_API_KEY`.
 
 ```python
-import os
 from envoapi import EnvoAPI
 
-with EnvoAPI(api_key=os.environ["ENVOAPI_API_KEY"], timeout=30.0) as client:
+with EnvoAPI(api_key="your-api-key", timeout=30.0) as client:
     response = client.profiles.get_posts(username="satyanadella")
     print(response.body.data.posts)
 ```
@@ -84,7 +87,7 @@ Both clients accept the same options. The default timeout is 60 seconds per HTTP
 from envoapi import APIError, EnvoAPI
 
 try:
-    with EnvoAPI() as client:
+    with EnvoAPI(api_key="your-api-key") as client:
         response = client.profiles.get_posts(username="satyanadella")
         print(response.body.data.posts)
 except APIError as error:

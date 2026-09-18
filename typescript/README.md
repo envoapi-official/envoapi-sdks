@@ -16,6 +16,10 @@ Or use `pnpm add envoapi` or `yarn add envoapi`.
 
 [Get a free API key with 100 credits](https://envoapi.com/signup).
 
+Pass your key directly with `new EnvoAPI({ apiKey: 'your-api-key' })`. **The `ENVOAPI_API_KEY` environment variable is optional.** An explicitly supplied key takes precedence.
+
+Alternatively, set the environment variable and omit `apiKey`:
+
 ```sh
 # macOS / Linux
 export ENVOAPI_API_KEY="your-api-key"
@@ -26,7 +30,7 @@ export ENVOAPI_API_KEY="your-api-key"
 $env:ENVOAPI_API_KEY="your-api-key"
 ```
 
-Run your app from the same terminal. `new EnvoAPI()` reads this variable automatically.
+If you use the environment variable, run your app from the same terminal. `new EnvoAPI()` reads it automatically. Keep your key out of source control.
 
 ## Make a request
 
@@ -35,7 +39,7 @@ Save as `app.mjs`:
 ```javascript
 import { EnvoAPI } from 'envoapi';
 
-const client = new EnvoAPI();
+const client = new EnvoAPI({ apiKey: 'your-api-key' });
 const response = await client.profiles.getPosts({ username: 'satyanadella' });
 
 console.log(response.body.data.posts);
@@ -55,7 +59,7 @@ In a TypeScript project configured for ES modules, use the same import and calls
 ```typescript
 import { EnvoAPI } from 'envoapi';
 
-const client = new EnvoAPI();
+const client = new EnvoAPI({ apiKey: 'your-api-key' });
 
 async function getPosts(username: string) {
   const response = await client.profiles.getPosts({ username });
@@ -71,7 +75,7 @@ You can also pass a key from your app's configuration. An explicit key overrides
 
 ```javascript
 const client = new EnvoAPI({
-  apiKey: process.env.ENVOAPI_API_KEY,
+  apiKey: 'your-api-key',
   timeoutMs: 30_000,
 });
 ```
@@ -83,7 +87,7 @@ The default timeout is 60 seconds. Use `baseUrl` to change the default `https://
 ```javascript
 import { EnvoAPI, APIError } from 'envoapi';
 
-const client = new EnvoAPI();
+const client = new EnvoAPI({ apiKey: 'your-api-key' });
 
 try {
   const response = await client.profiles.getPosts({ username: 'satyanadella' });
