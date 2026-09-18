@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/envoapi/sdks/go/api"
+	"github.com/envoapi-official/envoapi-sdks/go/api"
 )
 
 func TestNullableUnionBranches(t *testing.T) {

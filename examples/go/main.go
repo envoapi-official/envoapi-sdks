@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/envoapi/sdks/go"
+	"github.com/envoapi-official/envoapi-sdks/go"
 )
 
 func main() {

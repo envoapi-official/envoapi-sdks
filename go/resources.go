@@ -3,7 +3,7 @@ package envoapi
 
 import (
 	"context"
-	"github.com/envoapi/sdks/go/api"
+	"github.com/envoapi-official/envoapi-sdks/go/api"
 	"time"
 )
 

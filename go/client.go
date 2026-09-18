@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/envoapi/sdks/go/api"
+	"github.com/envoapi-official/envoapi-sdks/go/api"
 )
 
 // Response preserves the API envelope and HTTP metadata.

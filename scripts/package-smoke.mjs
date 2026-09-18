@@ -139,7 +139,7 @@ try {
   fs.cpSync(path.join(root, "go"), module, { recursive: true });
   fs.writeFileSync(
     path.join(go, "go.mod"),
-    `module sdk-consumer\n\ngo 1.25.0\nrequire github.com/envoapi/sdks/go v0.0.0\nreplace github.com/envoapi/sdks/go => ${module}\n`,
+    `module sdk-consumer\n\ngo 1.25.0\nrequire github.com/envoapi-official/envoapi-sdks/go v0.0.0\nreplace github.com/envoapi-official/envoapi-sdks/go => ${module}\n`,
   );
   fs.copyFileSync(
     path.join(root, "examples/go/main.go"),

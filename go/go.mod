@@ -1,4 +1,4 @@
-module github.com/envoapi/sdks/go
+module github.com/envoapi-official/envoapi-sdks/go
 
 go 1.25.0
 

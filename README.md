@@ -1,8 +1,8 @@
 # EnvoAPI SDKs
 
-Local SDK repository for TypeScript/JavaScript, Python, and Go. All three clients cover the 52 operations in the committed public OpenAPI 3.1 snapshot. Builds and installed clients do not depend on the backend repository or its private contracts package.
+SDK repository for TypeScript/JavaScript, Python, and Go. All three clients cover the 52 operations in the committed public OpenAPI 3.1 snapshot. Builds and installed clients do not depend on the backend repository or its private contracts package.
 
-The packages are versioned `0.1.0` for local development. They have not been published. The intended repository is `envoapi/sdks`; the npm and PyPI package names are `envoapi`, and the Go module is `github.com/envoapi/sdks/go`.
+The packages are versioned `0.1.0` for local development. They have not been published. The repository is `envoapi-official/envoapi-sdks`; the npm and PyPI package names are `envoapi`, and the Go module is `github.com/envoapi-official/envoapi-sdks/go`.
 
 ## Local development
 
@@ -70,4 +70,4 @@ TypeScript uses `openapi-typescript` and `openapi-fetch`. Python uses `openapi-p
 
 The canonical snapshot is copied byte for byte. Synthetic fixtures test serialization shape, metadata, and union branches; they are not valid selectors for live lookup requests. The SDK does not add endpoints merely because related schemas appear in the document.
 
-GitHub setup, Actions, registry ownership, public licensing, and publishing are deferred. Before public release, select the repository license and verify package names and permissions. Future Go tags must include the module subdirectory, for example `go/v0.1.0`; each language can release independently. Future Actions jobs must use runner group `envoapi-runner` and labels `[self-hosted, linux, x64]`.
+Actions, registry ownership, licensing, and package publishing are deferred. Before publishing packages, select the repository license and verify package names and permissions. Future Go tags must include the module subdirectory, for example `go/v0.1.0`; each language can release independently. Future Actions jobs must use runner group `envoapi-runner` and labels `[self-hosted, linux, x64]`.
