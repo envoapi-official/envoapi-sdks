@@ -89,7 +89,7 @@ func NewClient(options ...Option) (*Client, error) {
 	raw, err := api.NewClient(strings.TrimRight(cfg.baseURL, "/"), api.WithHTTPClient(cfg.httpClient), api.WithRequestEditorFn(func(ctx context.Context, r *http.Request) error {
 		r.Header.Set("Authorization", "Bearer "+cfg.key)
 		r.Header.Set("Accept", "application/json")
-		r.Header.Set("User-Agent", "envoapi-go/0.1.1")
+		r.Header.Set("User-Agent", "envoapi-go/0.1.2")
 		return nil
 	}))
 	if err != nil {
