@@ -16,7 +16,7 @@ import (
 	"github.com/envoapi-official/envoapi-sdks/go/api"
 )
 
-const sdkVersion = "0.1.3"
+const sdkVersion = "0.1.4"
 
 // Response preserves the API envelope and HTTP metadata.
 type Response[T any] struct {

@@ -86,7 +86,7 @@ export class Transport {
       headers: {
         Authorization: `Bearer ${key}`,
         Accept: "application/json",
-        "User-Agent": "envoapi-typescript/0.1.3",
+        "User-Agent": "envoapi-typescript/0.1.4",
       },
       redirect: "error",
     });
