@@ -167,6 +167,18 @@ jobs:
           name: ${{ needs.prepare.outputs.artifact }}
           path: dist/release
       - name: Confirm publication and create GitHub release notes
-        run: node scripts/release.mjs finish
+        # Registries can briefly return stale metadata after a successful upload.
+        # finish verifies hashes and skips existing releases, so retries are safe.
+        run: |
+          for attempt in {1..6}; do
+            if node scripts/release.mjs finish; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 6 ]; then
+              exit 1
+            fi
+            echo "Finalization attempt $attempt failed; retrying in 30 seconds."
+            sleep 30
+          done
         env:
           GH_TOKEN: ${{ github.token }}
