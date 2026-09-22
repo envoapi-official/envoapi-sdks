@@ -30,7 +30,39 @@ TypeScript uses `openapi-typescript` and `openapi-fetch`. Python uses `openapi-p
 
 The canonical snapshot is copied byte for byte. Synthetic fixtures test serialization shape, metadata, and union branches; they are not valid selectors for live lookup requests. The SDK does not add endpoints merely because related schemas appear in the document.
 
-See the [Python release instructions](python/PUBLISHING.md) for building, checking, and uploading the PyPI distribution. Publishing automation is deferred. Future Go tags must include the module subdirectory, for example `go/v0.1.0`; each language can release independently. Future Actions jobs must use runner group `envoapi-runner` and labels `[self-hosted, linux, x64]`.
+Pull requests to `main` run `pnpm verify`. Each push to `main` runs verification and automatically releases changed SDKs. No release PR, commit-message convention, or manual tag is needed.
+
+Each SDK gets its own patch increment and tag: `npm/vX.Y.Z`, `python/vX.Y.Z`, and `go/vX.Y.Z`. Changes under `typescript/`, `python/`, or `go/` release that SDK, including its packaged documentation. Changes to `openapi/`, `scripts/`, root package manifests, lockfiles, or `LICENSE` release all three. Root documentation, `examples/`, `tests/`, and `.github/` changes run CI without publishing. Each comparison starts at that SDK's latest release tag, so queued updates are included in the next release.
+
+For a minor or major release, set a higher version in the PR: TypeScript's `package.json` and runtime user-agent, Python's `pyproject.toml` and runtime user-agent, or Go's `sdkVersion` in `client.go`. The higher version overrides the patch increment. Versions must be stable `X.Y.Z`; downgrades and prereleases are rejected. Go v2+ needs a separate module-path migration before this workflow can publish it.
+
+The workflow stamps versions before verification, saves the tested npm archive and Python wheel/source archive, and pushes the version commit plus all selected tags atomically. A newer `main` prevents a stale push. Releases run one at a time and are never cancelled by a newer push; GitHub may replace a queued run with the newest one. The automatic version commit uses `GITHUB_TOKEN`, so it does not trigger another run. Go becomes available from its tag. GitHub release notes are generated after npm and PyPI publication succeeds; see [Releases](https://github.com/envoapi-official/envoapi-sdks/releases).
+
+### One-time setup
+
+No repository secrets or variables are required. GitHub provides `GITHUB_TOKEN` and OIDC credentials automatically.
+
+1. Give this repository access to runner group `envoapi-runner`, with labels `[self-hosted, linux, x64]`. Use a current GitHub Actions runner on Linux x64 with Git and a C compiler; workflows install Node.js, pnpm, Python, Go, and uv. The runner must support Node 24 actions (runner 2.327.1 or newer). Repository rules must allow the workflow token to write the version commit to `main` and create SDK tags. If rules require PRs for every commit, configure an allowed automation bypass before enabling releases.
+2. In the npm **envoapi** package settings, add a GitHub Actions trusted publisher: owner **envoapi-official**, repository **envoapi-sdks**, workflow **release.yml**, environment **leave blank**. Enable direct publishing for this publisher.
+3. In the PyPI **envoapi** project's Publishing settings, add the same GitHub owner, repository, and workflow; leave the environment blank. See [Python publishing](python/PUBLISHING.md).
+
+Verification and Git operations use `envoapi-runner`. npm and PyPI uploads use `ubuntu-latest` with `id-token: write`; npm trusted publishing requires a GitHub-hosted runner. Both workflows pin third-party actions to commit hashes. References: [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/), [PyPI trusted publishers](https://docs.pypi.org/trusted-publishers/adding-a-publisher/), [GitHub token-triggered events](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow#triggering-a-workflow-from-a-workflow).
+
+### Preview and recovery
+
+After installing development dependencies, preview the next release:
+
+```sh
+pnpm release:dry-run
+```
+
+This includes your local edits in a temporary checkout, calculates versions using local tags and public registry metadata, and runs the complete verification against the staged versions. It prints the versions and archive hashes, then removes the temporary checkout. Your source files, index, branches, tags, and existing distribution files are preserved. Fetch current tags first when previewing from an older checkout.
+
+If publication fails, open the **original Release workflow run** and choose **Re-run failed jobs**. Re-running all jobs also restores that run's saved artifact. Retries verify the remote tags and archive hashes, skip identical files already published, and upload only missing files. They neither rebuild published packages nor bump versions again. A newer release is blocked while the latest tagged npm or Python version has missing files. Recover the failed release first, then rerun the latest main workflow.
+
+Artifacts are retained for 90 days, subject to repository retention limits. If the original artifact is missing, restore the exact files from a backup before recovery. A conflicting existing tag or registry file stops the workflow and requires investigation; do not delete/reuse published versions or move tags. npm publishing also refuses to move `latest` backwards. Registry outages and permission errors fail the run instead of being treated as missing versions.
+
+On the first automated release, npm and Python bootstrap from their currently published versions because historical releases have no SDK tags. Existing Go tags remain the Go baseline.
 
 ## Working on Go locally
 

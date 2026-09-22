@@ -4,8 +4,15 @@ import os from "node:os";
 import http from "node:http";
 import { spawn } from "node:child_process";
 import { root, env } from "./environment.mjs";
+import { readVersions } from "./release.mjs";
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), "envoapi-consumers-"));
+const versions = readVersions(root);
+const userAgents = new Set([
+  `envoapi-typescript/${versions.npm}`,
+  `envoapi-python/${versions.python}`,
+  `envoapi-go/${versions.go}`,
+]);
 const run = (cmd, args, cwd = root, extra = {}) =>
   new Promise((resolve, reject) => {
     // Consumer processes must import installed packages, never the checkout's Python package.
@@ -27,6 +34,7 @@ const posts = fs.readFileSync(path.join(root, "tests/fixtures/posts.json"));
 const server = http.createServer((req, res) => {
   if (
     req.headers.authorization !== "Bearer package-test" ||
+    !userAgents.has(req.headers["user-agent"]) ||
     req.url !== "/v1/profiles/posts?username=alice"
   ) {
     res.writeHead(400);
@@ -46,14 +54,17 @@ const extra = {
   ENVOAPI_BASE_URL: `http://127.0.0.1:${server.address().port}`,
 };
 try {
-  fs.mkdirSync(path.join(root, "dist"), { recursive: true });
+  fs.rmSync(path.join(root, "dist/packages"), { recursive: true, force: true });
+  for (const kind of ["npm", "python"]) {
+    fs.mkdirSync(path.join(root, "dist/packages", kind), { recursive: true });
+  }
   await run("pnpm", ["--filter", "envoapi", "build"]);
   await run("pnpm", [
     "--dir",
     "typescript",
     "pack",
     "--pack-destination",
-    "../dist",
+    "../dist/packages/npm",
   ]);
   const js = path.join(temp, "javascript");
   fs.mkdirSync(js);
@@ -61,7 +72,11 @@ try {
     path.join(js, "package.json"),
     JSON.stringify({ name: "sdk-consumer", private: true, type: "module" }),
   );
-  await run("pnpm", ["add", path.join(root, "dist/envoapi-0.1.3.tgz")], js);
+  await run(
+    "pnpm",
+    ["add", path.join(root, `dist/packages/npm/envoapi-${versions.npm}.tgz`)],
+    js,
+  );
   fs.copyFileSync(
     path.join(root, "examples/typescript/posts.mjs"),
     path.join(js, "posts.mjs"),
@@ -92,11 +107,10 @@ try {
   await run("python", [
     "-m",
     "build",
-    "--wheel",
     "--no-isolation",
     "python",
     "--outdir",
-    "dist",
+    "dist/packages/python",
   ]);
   const py = path.join(temp, "python");
   fs.mkdirSync(py);
@@ -112,7 +126,10 @@ try {
     "install",
     "--python",
     interpreter,
-    path.join(root, "dist/envoapi-0.1.2-py3-none-any.whl"),
+    path.join(
+      root,
+      `dist/packages/python/envoapi-${versions.python}-py3-none-any.whl`,
+    ),
   ]);
   for (const name of ["posts.py", "async_posts.py"]) {
     fs.copyFileSync(
@@ -152,7 +169,7 @@ try {
   if (requests !== 4)
     throw new Error(`Expected four example requests, got ${requests}`);
   console.log(
-    "npm archive, Python wheel (sync and async), and isolated Go module passed consumer checks.",
+    "npm archive, Python wheel built from its source archive (sync and async), and isolated Go module passed consumer checks.",
   );
 } finally {
   await new Promise((resolve) => server.close(resolve));

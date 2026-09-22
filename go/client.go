@@ -16,6 +16,8 @@ import (
 	"github.com/envoapi-official/envoapi-sdks/go/api"
 )
 
+const sdkVersion = "0.1.3"
+
 // Response preserves the API envelope and HTTP metadata.
 type Response[T any] struct {
 	Body    T
@@ -89,7 +91,7 @@ func NewClient(options ...Option) (*Client, error) {
 	raw, err := api.NewClient(strings.TrimRight(cfg.baseURL, "/"), api.WithHTTPClient(cfg.httpClient), api.WithRequestEditorFn(func(ctx context.Context, r *http.Request) error {
 		r.Header.Set("Authorization", "Bearer "+cfg.key)
 		r.Header.Set("Accept", "application/json")
-		r.Header.Set("User-Agent", "envoapi-go/0.1.3")
+	r.Header.Set("User-Agent", "envoapi-go/"+sdkVersion)
 		return nil
 	}))
 	if err != nil {

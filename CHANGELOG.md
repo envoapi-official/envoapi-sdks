@@ -1,5 +1,7 @@
 # Changelog
 
+New release notes are published in [GitHub Releases](https://github.com/envoapi-official/envoapi-sdks/releases), with independent `npm/`, `python/`, and `go/` tags. This file preserves the release history from before automation.
+
 ## npm 0.1.3 — 2026-09-18
 
 - Add the GitHub repository URL and TypeScript package directory to npm metadata.

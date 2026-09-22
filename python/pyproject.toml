@@ -27,7 +27,7 @@ Homepage = "https://envoapi.com"
 Repository = "https://github.com/envoapi-official/envoapi-sdks"
 Documentation = "https://github.com/envoapi-official/envoapi-sdks/blob/main/python/README.md"
 Issues = "https://github.com/envoapi-official/envoapi-sdks/issues"
-Changelog = "https://github.com/envoapi-official/envoapi-sdks/blob/main/CHANGELOG.md"
+Changelog = "https://github.com/envoapi-official/envoapi-sdks/releases"
 
 [tool.hatch.build.targets.sdist]
 include = ["/envoapi", "/README.md", "/pyproject.toml", "/LICENSE"]

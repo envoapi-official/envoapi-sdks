@@ -20,5 +20,6 @@ run("node", [
   "tests/generation.test.mjs",
   "tests/import.test.mjs",
   "tests/packages.test.mjs",
+  "tests/release.test.mjs",
 ]);
 console.log("\nAll local SDK verification passed.");

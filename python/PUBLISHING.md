@@ -1,53 +1,26 @@
 # Publishing the Python SDK
 
-Run commands from the repository root. The Python distribution is `envoapi`, currently version `0.1.2`. Publishing to PyPI is separate from npm publishing and GitHub authentication.
+Updates to `main` are verified and published automatically by [release.yml](../.github/workflows/release.yml). The PyPI package name is **envoapi**. Releases use tags such as `python/v0.1.3` and appear in [GitHub Releases](https://github.com/envoapi-official/envoapi-sdks/releases).
 
-## Prepare and validate (no credentials)
+## One-time PyPI setup
 
-The prepared workspace has the release tools in `.tools/pypi-venv`. To recreate that environment using the locally installed uv:
+In the existing [envoapi project's Publishing settings](https://pypi.org/manage/project/envoapi/settings/publishing/), add a GitHub Actions trusted publisher:
 
-```sh
-.tools/uv-x86_64-unknown-linux-gnu/uv venv .tools/pypi-venv --python .venv/bin/python
-.tools/uv-x86_64-unknown-linux-gnu/uv pip install --python .tools/pypi-venv/bin/python build==1.4.0 hatchling==1.29.0 twine==7.0.0
-```
+| Field             | Value              |
+| ----------------- | ------------------ |
+| Owner             | `envoapi-official` |
+| Repository        | `envoapi-sdks`     |
+| Workflow filename | `release.yml`      |
+| Environment       | Leave blank        |
 
-On another machine, create a Python 3.11+ virtual environment and install these same tools. The SDK itself does not require these publishing dependencies.
+Use an account with publishing access to the existing project. No API token, repository secret, or environment variable is needed. The hosted publishing job gets a short-lived credential through OIDC. See [PyPI's setup instructions](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
 
-After updating `python/pyproject.toml` and the changelog for a release:
+## What gets published
 
-```sh
-pnpm verify
-.tools/pypi-venv/bin/python -m build python --outdir dist/pypi/0.1.2
-.tools/pypi-venv/bin/python -m twine check --strict \
-  dist/pypi/0.1.2/envoapi-0.1.2-py3-none-any.whl \
-  dist/pypi/0.1.2/envoapi-0.1.2.tar.gz
-```
+The release workflow updates `pyproject.toml` and the runtime user-agent before running `pnpm verify`. Verification builds a source archive and then builds the wheel from that archive. It installs that wheel into a separate consumer environment and exercises both synchronous and asynchronous clients.
 
-The default build creates a source archive and builds the wheel from that archive, verifying that the source archive contains the files needed to build independently. Release files live in a Python-only version directory, separate from the npm archive. Use a new version and output directory for each release; PyPI does not allow replacing previously uploaded files.
+The tested files are `dist/packages/python/envoapi-X.Y.Z.tar.gz` and `dist/packages/python/envoapi-X.Y.Z-py3-none-any.whl`. Only these Python files are passed to the PyPI action. Their SHA-256 hashes are saved in the workflow artifact and annotated release tag.
 
-## Create your PyPI token
+Patch versions increment automatically for Python or shared build/contract changes. Set a higher stable version in `pyproject.toml` and the runtime user-agent in your PR to request a minor or major release. Preview locally with `pnpm release:dry-run` after the [development setup](../CONTRIBUTING.md#development-setup).
 
-1. Sign into the intended publishing account at <https://pypi.org/>. Verify its email address and enable two-factor authentication.
-2. Open <https://pypi.org/manage/account/token/> and create an API token.
-3. Select the token scope for the existing `envoapi` project. Account-wide scope is only needed when creating a new project with its first upload.
-4. Keep the token ready to paste at the terminal password prompt. It begins with `pypi-`.
-
-The package's author metadata is `envoapi <envoapi@gmail.com>`. Use an account with publishing access to the existing PyPI project. Neither GitHub SSH keys nor npm credentials authenticate PyPI uploads.
-
-## Upload (this publishes publicly)
-
-Only run this step when ready to publish the validated release files:
-
-```sh
-.tools/pypi-venv/bin/python -m twine upload \
-  --repository-url https://upload.pypi.org/legacy/ \
-  --username __token__ \
-  dist/pypi/0.1.2/envoapi-0.1.2-py3-none-any.whl \
-  dist/pypi/0.1.2/envoapi-0.1.2.tar.gz
-```
-
-When Twine prompts for the API token/password, paste the complete token and press Enter. The input is hidden. Do not enter your PyPI website password, put the token in the command, commit it to the repository, or send it in chat. No credentials are needed before this upload step.
-
-After uploading, check <https://pypi.org/project/envoapi/0.1.2/> and install with `python -m pip install envoapi==0.1.2` in a fresh environment. For future uploads, create a token scoped to `envoapi` and revoke the initial account-wide token, or configure PyPI Trusted Publishing.
-
-References: [PyPA packaging guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/), [PyPI API tokens](https://pypi.org/help/#apitoken), [Twine](https://twine.readthedocs.io/en/stable/).
+If an upload is interrupted, choose **Re-run failed jobs** on the original Release workflow run. The workflow reuses its saved files, checks PyPI hashes, and uploads only missing distributions. It stops if a published filename has different contents. Never rebuild and overwrite an already published version. See [release recovery](../CONTRIBUTING.md#preview-and-recovery) for artifact retention and recovery details.
