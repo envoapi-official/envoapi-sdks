@@ -42,11 +42,11 @@ The workflow stamps versions before verification, saves the tested npm archive a
 
 No repository secrets or variables are required. GitHub provides `GITHUB_TOKEN` and OIDC credentials automatically.
 
-1. Give this repository access to runner group `envoapi-runner`, with labels `[self-hosted, linux, x64]`. Use a current GitHub Actions runner on Linux x64 with Git and a C compiler; workflows install Node.js, pnpm, Python, Go, and uv. The runner must support Node 24 actions (runner 2.327.1 or newer). Repository rules must allow the workflow token to write the version commit to `main` and create SDK tags. If rules require PRs for every commit, configure an allowed automation bypass before enabling releases.
+1. Repository rules must allow the workflow token to write the version commit to `main` and create SDK tags. If rules require PRs for every commit, configure an allowed automation bypass before enabling releases. All jobs use GitHub-hosted `ubuntu-latest` runners; no runner group or self-hosted runner setup is required.
 2. In the npm **envoapi** package settings, add a GitHub Actions trusted publisher: owner **envoapi-official**, repository **envoapi-sdks**, workflow **release.yml**, environment **leave blank**. Enable direct publishing for this publisher.
 3. In the PyPI **envoapi** project's Publishing settings, add the same GitHub owner, repository, and workflow; leave the environment blank. See [Python publishing](python/PUBLISHING.md).
 
-Verification and Git operations use `envoapi-runner`. npm and PyPI uploads use `ubuntu-latest` with `id-token: write`; npm trusted publishing requires a GitHub-hosted runner. Both workflows pin third-party actions to commit hashes. References: [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/), [PyPI trusted publishers](https://docs.pypi.org/trusted-publishers/adding-a-publisher/), [GitHub token-triggered events](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow#triggering-a-workflow-from-a-workflow).
+Workflows install Node.js, pnpm, Python, Go, and uv on GitHub-hosted runners. npm and PyPI uploads use `id-token: write` for trusted publishing. Both workflows pin third-party actions to commit hashes. References: [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/), [PyPI trusted publishers](https://docs.pypi.org/trusted-publishers/adding-a-publisher/), [GitHub token-triggered events](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow#triggering-a-workflow-from-a-workflow).
 
 ### Preview and recovery
 
